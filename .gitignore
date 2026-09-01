@@ -1,0 +1,41 @@
+# Cursor agent / IDE (do not publish)
+.cursor/
+.cursorignore
+.cursorrules
+AGENTS.md
+.agents/
+agent-transcripts/
+*.cursorindexingignore
+
+# Dependencies & build
+**/node_modules/
+**/.angular/
+**/dist/
+**/out-tsc/
+**/target/
+**/.mvn/wrapper/maven-wrapper.jar
+
+# Secrets — keep local credentials off GitHub
+**/.env
+**/.env.local
+**/application.properties
+**/application-local.properties
+**/credentials.json
+**/secrets.json
+
+# Python / ML runtime
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Generated certificates and logs
+PI-Backend-main/certificates/*.pdf
+PI-Backend-main/output.txt
+
+# Logs & OS
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml

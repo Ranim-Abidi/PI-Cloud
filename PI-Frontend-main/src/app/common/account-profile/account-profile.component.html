@@ -1,0 +1,69 @@
+<div class="account-profile-card">
+  <div class="account-profile-header">
+    <h4>{{ title }}</h4>
+    <p>Bienvenue, <strong>{{ displayName }}</strong></p>
+  </div>
+
+  <div class="account-profile-body">
+    <div *ngIf="loading" class="text-muted">Chargement du profil...</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+
+    <form *ngIf="!loading" (ngSubmit)="save()">
+      <div class="row g-3">
+        <div class="col-md-6" *ngIf="isCandidat">
+          <label>Prénom</label>
+          <input class="form-control" [(ngModel)]="form.prenom" name="prenom" placeholder="Votre prénom">
+        </div>
+        <div class="col-md-6">
+          <label>{{ isCandidat ? 'Nom' : 'Nom complet' }}</label>
+          <input class="form-control" [(ngModel)]="form.nom" name="nom" required placeholder="Votre nom">
+        </div>
+        <div class="col-md-6">
+          <label>Email</label>
+          <input class="form-control" [value]="form.email" name="email" disabled>
+        </div>
+        <div class="col-md-6" *ngIf="isCandidat">
+          <label>Téléphone</label>
+          <input class="form-control" [(ngModel)]="form.telephone" name="telephone" placeholder="Votre téléphone">
+        </div>
+
+        <div class="col-md-6" *ngIf="isRecruteur || isClientFreelance">
+          <label>Entreprise</label>
+          <input class="form-control" [(ngModel)]="form.entreprise" name="entreprise" placeholder="Nom de l'entreprise">
+        </div>
+        <div class="col-md-6" *ngIf="isRecruteur">
+          <label>Poste</label>
+          <input class="form-control" [(ngModel)]="form.poste" name="poste" placeholder="Votre poste">
+        </div>
+        <div class="col-md-6" *ngIf="isRecruteur">
+          <label>Secteur</label>
+          <input class="form-control" [(ngModel)]="form.secteur" name="secteur" placeholder="Secteur d'activité">
+        </div>
+        <div class="col-md-6" *ngIf="isClientFreelance">
+          <label>Budget</label>
+          <input class="form-control" type="number" step="0.01" [(ngModel)]="form.budget" name="budget" placeholder="Budget">
+        </div>
+
+        <div class="col-md-6" *ngIf="isOrganisateur">
+          <label>Organisation</label>
+          <input class="form-control" [(ngModel)]="form.organisation" name="organisation" placeholder="Nom de l'organisation">
+        </div>
+        <div class="col-md-6" *ngIf="isOrganisateur">
+          <label>Adresse</label>
+          <input class="form-control" [(ngModel)]="form.adresse" name="adresse" placeholder="Adresse">
+        </div>
+        <div class="col-12" *ngIf="isOrganisateur">
+          <label>Description</label>
+          <textarea class="form-control" rows="4" [(ngModel)]="form.descriptionProjet" name="descriptionProjet" placeholder="Présentez votre organisation"></textarea>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <button class="btn btn-primary" type="submit" [disabled]="saving">
+          {{ saving ? 'Enregistrement...' : 'Enregistrer' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
